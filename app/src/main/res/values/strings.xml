@@ -11,4 +11,5 @@
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="instructions_text">Select a date, then click next to see that date\'s picture</string>
     <string name="previousButtonText">Previous</string>
+    <string name="blank" />
 </resources>

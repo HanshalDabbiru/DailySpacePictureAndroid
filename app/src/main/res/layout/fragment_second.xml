@@ -6,46 +6,14 @@
     android:layout_height="match_parent"
     tools:context=".SecondFragment">
 
-    <Button
-        android:id="@+id/backButton"
-        android:layout_width="256dp"
-        android:layout_height="38dp"
-        android:layout_marginBottom="68dp"
-        android:text="@string/previous"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <ImageView
-        android:id="@+id/imageDisplay"
-        android:layout_width="405dp"
-        android:layout_height="358dp"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toTopOf="@+id/backButton"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/dateDisplay"
-        tools:src="@tools:sample/backgrounds/scenic" />
-
-    <WebView
-        android:id="@+id/videoDisplay"
-        android:layout_width="410dp"
-        android:layout_height="354dp"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toTopOf="@+id/backButton"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/dateDisplay"
-        app:layout_constraintVertical_bias="0.642" />
-
     <TextView
         android:id="@+id/dateDisplay"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="48dp"
-        android:text=" "
+        android:layout_marginTop="628dp"
+        android:text="@string/blank"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -53,20 +21,44 @@
         android:id="@+id/previousImageButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginBottom="100dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="67dp"
         android:text="@string/previousButtonText"
-        app:layout_constraintBottom_toTopOf="@+id/videoDisplay"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="NotSibling" />
 
     <Button
         android:id="@+id/nextImageButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="100dp"
-        android:text="Next"
-        app:layout_constraintBottom_toTopOf="@+id/videoDisplay"
-        app:layout_constraintEnd_toEndOf="parent" />
+        android:layout_marginTop="67dp"
+        android:layout_marginEnd="36dp"
+        android:text="@string/next"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="NotSibling" />
+
+    <ImageView
+        android:id="@+id/imageDisplay"
+        android:layout_width="405dp"
+        android:layout_height="358dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginBottom="242dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:src="@tools:sample/backgrounds/scenic" />
+
+    <WebView
+        android:id="@+id/videoDisplay"
+        android:layout_width="410dp"
+        android:layout_height="354dp"
+        android:layout_marginTop="16dp"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/previousImageButton">
+
+    </WebView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
