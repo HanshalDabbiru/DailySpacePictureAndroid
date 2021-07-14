@@ -26,11 +26,15 @@ import com.squareup.picasso.Picasso;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import android.text.method.ScrollingMovementMethod;
+import org.w3c.dom.Text;
 
 import java.util.Calendar;
 
 
 public class SecondFragment extends Fragment {
+
+    
     private RequestQueue queue;
     @Override
     public View onCreateView(
@@ -48,6 +52,7 @@ public class SecondFragment extends Fragment {
         WebView web = view.findViewById((R.id.videoDisplay));
         String m;
         String d;
+
         final int[] day = {SecondFragmentArgs.fromBundle(getArguments()).getDay()};
         if(day[0] < 10)
         {
@@ -80,6 +85,9 @@ public class SecondFragment extends Fragment {
                 {
                     Picasso.get().load(url1).into(image);
                     image.setVisibility(View.VISIBLE);
+                    TextView description = view.findViewById(R.id.description);
+                    description.setMovementMethod(ScrollingMovementMethod.getInstance());
+                    description.setText(reader.getString("explanation"));
                 }
                 if(mediaType.equals("video"))
                 {
@@ -88,6 +96,9 @@ public class SecondFragment extends Fragment {
                     web.loadUrl(url1);
                     web.setWebChromeClient(new WebChromeClient());
                     web.setVisibility(View.VISIBLE);
+                    TextView description = view.findViewById(R.id.description);
+                    description.setMovementMethod(ScrollingMovementMethod.getInstance());
+                    description.setText(reader.getString("explanation"));
                 }
                 dateDisplay.setText(m + "/" + d + "/" + y);
                 Calendar calendar = Calendar.getInstance();
@@ -177,11 +188,14 @@ public class SecondFragment extends Fragment {
                 JSONObject reader = new JSONObject(response);
                 String mediaType = reader.getString("media_type");
                 String url1 = reader.getString("url");
+                TextView description = view.getRootView().findViewById(R.id.description);
                 if(mediaType.equals("image"))
                 {
                     web.setVisibility(View.INVISIBLE);
+                    web.loadUrl(" ");
                     Picasso.get().load(url1).into(image);
                     image.setVisibility(View.VISIBLE);
+                    description.setText(reader.getString("explanation"));
                 }
                 if(mediaType.equals("video"))
                 {
@@ -191,6 +205,8 @@ public class SecondFragment extends Fragment {
                     web.loadUrl(url1);
                     web.setWebChromeClient(new WebChromeClient());
                     web.setVisibility(View.VISIBLE);
+                    description.setText(reader.getString("explanation"));
+
                 }
                 dateDisplay.setText(arr[1] + "/" + c.get(Calendar.DAY_OF_MONTH) + "/" + c.get(Calendar.YEAR));
                 Calendar calendar = Calendar.getInstance();
@@ -258,11 +274,13 @@ public class SecondFragment extends Fragment {
                 JSONObject reader = new JSONObject(response);
                 String mediaType = reader.getString("media_type");
                 String url1 = reader.getString("url");
+                TextView description = view.getRootView().findViewById(R.id.description);
                 if(mediaType.equals("image"))
                 {
                     web.setVisibility(View.INVISIBLE);
                     Picasso.get().load(url1).into(image);
                     image.setVisibility(View.VISIBLE);
+                    description.setText(reader.getString("explanation"));
                 }
                 if(mediaType.equals("video"))
                 {
@@ -272,6 +290,7 @@ public class SecondFragment extends Fragment {
                     web.loadUrl(url1);
                     web.setWebChromeClient(new WebChromeClient());
                     web.setVisibility(View.VISIBLE);
+                    description.setText(reader.getString("explanation"));
                 }
                 dateDisplay.setText(arr[1] + "/" + c.get(Calendar.DAY_OF_MONTH) + "/" + c.get(Calendar.YEAR));
                 Calendar calendar = Calendar.getInstance();
@@ -301,6 +320,8 @@ public class SecondFragment extends Fragment {
         return arr;
 
     }
+
+
 
 
 }

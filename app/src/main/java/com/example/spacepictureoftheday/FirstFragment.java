@@ -28,6 +28,7 @@ public class FirstFragment extends Fragment {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         final DatePicker datePicker = view.findViewById(date_picker);
+
         Calendar calendar = Calendar.getInstance();
         datePicker.setMaxDate(calendar.getTimeInMillis());
         datePicker.setMinDate((long) 803624400 * 1000 + 86400000);
