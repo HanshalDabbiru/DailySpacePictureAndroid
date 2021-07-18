@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+    android:layout_width="fill_parent"
     android:layout_height="match_parent"
-    android:scrollbars="vertical"
-    android:textAlignment="center"
-    tools:context=".SecondFragment">
+    android:background="#212325"
+    android:fillViewport="false"
+    android:orientation="vertical"
+    android:padding="10dp">
 
     <Button
         android:id="@+id/previousImageButton"
@@ -38,6 +40,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="17dp"
         android:text="@string/blank"
+        android:textColor="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
@@ -60,8 +63,8 @@
 
     <ImageView
         android:id="@+id/imageDisplay"
-        android:layout_width="385dp"
-        android:layout_height="265dp"
+        android:layout_width="383dp"
+        android:layout_height="264dp"
         android:layout_marginStart="24dp"
         android:layout_marginEnd="24dp"
         android:visibility="invisible"
@@ -74,11 +77,12 @@
 
     <TextView
         android:id="@+id/description"
-        android:layout_width="338dp"
-        android:layout_height="188dp"
+        android:layout_width="333dp"
+        android:layout_height="214dp"
         android:layout_marginStart="24dp"
         android:layout_marginEnd="24dp"
         android:scrollbars="vertical"
+        android:textColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.491"

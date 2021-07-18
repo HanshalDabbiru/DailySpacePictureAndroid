@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF"
+    android:background="#212325"
     tools:context=".FirstFragment">
 
     <Button
@@ -20,16 +20,18 @@
 
     <DatePicker
         android:id="@+id/date_picker"
+        android:theme="@style/MyDatePicker"
         android:layout_width="355dp"
         android:layout_height="371dp"
         android:layout_marginStart="51dp"
         android:layout_marginEnd="51dp"
-        android:background="#F6F6F6"
-        android:backgroundTint="#FFFFFF"
+        android:background="#212325"
+        android:backgroundTint="#00FFFFFF"
+        android:calendarTextColor="@color/white"
         android:calendarViewShown="false"
         android:datePickerMode="spinner"
         android:dayOfWeekBackground="#B12929"
-        android:foregroundTint="#C61616"
+        android:foregroundTint="#FFFFFF"
         android:headerBackground="@color/purple_500"
         android:scrollbars="vertical"
         android:yearListSelectorColor="#8F2121"

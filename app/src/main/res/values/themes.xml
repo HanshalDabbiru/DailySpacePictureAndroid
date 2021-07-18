@@ -19,6 +19,13 @@
         <item name="windowNoTitle">true</item>
     </style>
 
+    <style name="MyDatePicker" >
+        <!-- Text color -->
+        <item name="android:textColorPrimary">@color/white</item>
+        <!-- Divider color -->
+        <item name="colorControlNormal">@color/white</item>
+    </style>
+
     <style name="Theme.SpacePictureOfTheDay.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="Theme.SpacePictureOfTheDay.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
