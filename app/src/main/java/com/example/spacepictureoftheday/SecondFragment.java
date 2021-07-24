@@ -1,7 +1,6 @@
 package com.example.spacepictureoftheday;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,7 +11,6 @@ import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -27,7 +25,6 @@ import com.squareup.picasso.Picasso;
 import org.json.JSONException;
 import org.json.JSONObject;
 import android.text.method.ScrollingMovementMethod;
-import org.w3c.dom.Text;
 
 import java.util.Calendar;
 
@@ -50,6 +47,7 @@ public class SecondFragment extends Fragment {
         ImageView image = view.findViewById((R.id.imageDisplay));
         TextView dateDisplay = view.findViewById(R.id.dateDisplay);
         WebView web = view.findViewById((R.id.videoDisplay));
+        web.getSettings().setAppCacheMaxSize(10 * 1024 * 1024);
         String m;
         String d;
 
@@ -82,10 +80,10 @@ public class SecondFragment extends Fragment {
                 String mediaType = reader.getString("media_type");
                 String url1 = reader.getString("url");
                 if(mediaType.equals("image"))
-                {
+                { //https://www.youtube.com/watch?v=rWAp-RHUAIc&feature=emb_imp_woyt
                     Picasso.get().load(url1).into(image);
                     image.setVisibility(View.VISIBLE);
-                    TextView description = view.findViewById(R.id.description);
+                    TextView description = view.findViewById(R.id.Imagedescription);
                     description.setMovementMethod(ScrollingMovementMethod.getInstance());
                     description.setText(reader.getString("explanation"));
                 }
@@ -93,12 +91,18 @@ public class SecondFragment extends Fragment {
                 {
                     web.getSettings().setJavaScriptEnabled(true);
                     web.getSettings().setPluginState(WebSettings.PluginState.ON);
+                    if(!url1.contains("https:"))
+                    {
+                        url1 = "https:" + url1;
+                    }
                     web.loadUrl(url1);
                     web.setWebChromeClient(new WebChromeClient());
                     web.setVisibility(View.VISIBLE);
-                    TextView description = view.findViewById(R.id.description);
+                    TextView description = view.findViewById(R.id.Imagedescription);
                     description.setMovementMethod(ScrollingMovementMethod.getInstance());
-                    description.setText(reader.getString("explanation"));
+                    TextView description2 = view.findViewById(R.id.Videodescription);
+                    description2.setVisibility(View.VISIBLE);
+                    description2.setText(reader.getString("explanation"));
                 }
                 dateDisplay.setText(m + "/" + d + "/" + y);
                 Calendar calendar = Calendar.getInstance();
@@ -171,7 +175,7 @@ public class SecondFragment extends Fragment {
         {
             d = Integer.toString(c.get(Calendar.DAY_OF_MONTH));
         }
-        if (c.get(Calendar.MONTH) < 10)
+        if (c.get(Calendar.MONTH) < 9)
         {
             m = "0" + arr[1];
         }
@@ -188,24 +192,49 @@ public class SecondFragment extends Fragment {
                 JSONObject reader = new JSONObject(response);
                 String mediaType = reader.getString("media_type");
                 String url1 = reader.getString("url");
-                TextView description = view.getRootView().findViewById(R.id.description);
+                TextView description = view.getRootView().findViewById(R.id.Imagedescription);
+                TextView description2 = view.getRootView().findViewById(R.id.Videodescription);
                 if(mediaType.equals("image"))
                 {
-                    web.setVisibility(View.INVISIBLE);
-                    web.loadUrl(" ");
-                    Picasso.get().load(url1).into(image);
+                    description.setVisibility(View.INVISIBLE);
+                    web.setVisibility(View.GONE);
                     image.setVisibility(View.VISIBLE);
+                    web.loadUrl(" ");
+//                    Picasso.get().load(url1).into(image);
                     description.setText(reader.getString("explanation"));
+                    description2.setVisibility(View.INVISIBLE);
+//                    description.setVisibility(View.VISIBLE);
+
+                    // Show progress bar
+                    description.setVisibility(View.INVISIBLE);
+// Hide progress bar on successful load
+                    Picasso.get().load(url1)
+                            .into(image, new com.squareup.picasso.Callback() {
+                                @Override
+                                public void onSuccess() {
+                                    description.setVisibility(View.VISIBLE);
+                                }
+
+                                @Override
+                                public void onError(Exception exception) {
+                                }
+                            });
                 }
                 if(mediaType.equals("video"))
                 {
-                    image.setVisibility(View.INVISIBLE);
+                    image.setVisibility(View.GONE);
+                    web.setVisibility(View.VISIBLE);
                     web.getSettings().setJavaScriptEnabled(true);
                     web.getSettings().setPluginState(WebSettings.PluginState.ON);
+                    if(!url1.contains("https:"))
+                    {
+                        url1 = "https:" + url1;
+                    }
                     web.loadUrl(url1);
                     web.setWebChromeClient(new WebChromeClient());
-                    web.setVisibility(View.VISIBLE);
-                    description.setText(reader.getString("explanation"));
+                    description2.setText(reader.getString("explanation"));
+                    description.setVisibility(View.INVISIBLE);
+                    description2.setVisibility(View.VISIBLE);
 
                 }
                 dateDisplay.setText(arr[1] + "/" + c.get(Calendar.DAY_OF_MONTH) + "/" + c.get(Calendar.YEAR));
@@ -257,7 +286,7 @@ public class SecondFragment extends Fragment {
         {
             d = Integer.toString(c.get(Calendar.DAY_OF_MONTH));
         }
-        if (c.get(Calendar.MONTH) < 10)
+        if (c.get(Calendar.MONTH) < 9)
         {
             m = "0" + arr[1];
         }
@@ -274,23 +303,44 @@ public class SecondFragment extends Fragment {
                 JSONObject reader = new JSONObject(response);
                 String mediaType = reader.getString("media_type");
                 String url1 = reader.getString("url");
-                TextView description = view.getRootView().findViewById(R.id.description);
+                TextView description = view.getRootView().findViewById(R.id.Imagedescription);
+                TextView description2 = view.getRootView().findViewById(R.id.Videodescription);
                 if(mediaType.equals("image"))
                 {
-                    web.setVisibility(View.INVISIBLE);
-                    Picasso.get().load(url1).into(image);
+                    web.setVisibility(View.GONE);
                     image.setVisibility(View.VISIBLE);
+                    description.setVisibility(View.INVISIBLE);
+                    //Picasso.get().load(url1).into(image);
                     description.setText(reader.getString("explanation"));
+                    //description.setVisibility(View.VISIBLE);
+                    description2.setVisibility(View.INVISIBLE);
+                    Picasso.get().load(url1)
+                            .into(image, new com.squareup.picasso.Callback() {
+                                @Override
+                                public void onSuccess() {
+                                    description.setVisibility(View.VISIBLE);
+                                }
+
+                                @Override
+                                public void onError(Exception exception) {
+                                }
+                            });
                 }
                 if(mediaType.equals("video"))
                 {
-                    image.setVisibility(View.INVISIBLE);
+                    image.setVisibility(View.GONE);
+                    web.setVisibility(View.VISIBLE);
                     web.getSettings().setJavaScriptEnabled(true);
                     web.getSettings().setPluginState(WebSettings.PluginState.ON);
+                    if(!url1.contains("https:"))
+                    {
+                        url1 = "https:" + url1;
+                    }
                     web.loadUrl(url1);
                     web.setWebChromeClient(new WebChromeClient());
-                    web.setVisibility(View.VISIBLE);
-                    description.setText(reader.getString("explanation"));
+                    description2.setText(reader.getString("explanation"));
+                    description2.setVisibility(View.VISIBLE);
+                    description.setVisibility(View.INVISIBLE);
                 }
                 dateDisplay.setText(arr[1] + "/" + c.get(Calendar.DAY_OF_MONTH) + "/" + c.get(Calendar.YEAR));
                 Calendar calendar = Calendar.getInstance();
