@@ -1,93 +1,115 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="fill_parent"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#212325"
-    android:fillViewport="false"
-    android:orientation="vertical"
-    android:padding="10dp">
+    android:background="#202325">
 
-    <Button
-        android:id="@+id/previousImageButton"
-        android:layout_width="63dp"
-        android:layout_height="39dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="5dp"
-        android:text="@string/previousButtonText"
-        app:icon="@android:drawable/ic_media_previous"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="NotSibling" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent"
+        android:background="#212325"
+        android:fillViewport="false"
+        android:orientation="vertical"
+        android:padding="10dp">
 
-    <Button
-        android:id="@+id/nextImageButton"
-        android:layout_width="63dp"
-        android:layout_height="39dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginEnd="24dp"
-        android:text="@string/next"
-        app:icon="@android:drawable/ic_media_next"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="NotSibling" />
+        <Button
+            android:id="@+id/nextImageButton"
+            android:layout_width="63dp"
+            android:layout_height="39dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="24dp"
+            android:text="@string/next"
+            app:icon="@android:drawable/ic_media_next"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="NotSibling" />
 
-    <TextView
-        android:id="@+id/dateDisplay"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="17dp"
-        android:text="@string/blank"
-        android:textColor="#FFFFFF"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <Button
+            android:id="@+id/previousImageButton"
+            android:layout_width="63dp"
+            android:layout_height="39dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="5dp"
+            android:text="@string/previousButtonText"
+            app:icon="@android:drawable/ic_media_previous"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="NotSibling" />
 
-    <WebView
-        android:id="@+id/videoDisplay"
-        android:layout_width="385dp"
-        android:layout_height="265dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginEnd="24dp"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/dateDisplay"
-        app:layout_constraintVertical_bias="0.06">
+        <TextView
+            android:id="@+id/dateDisplay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="17dp"
+            android:text="@string/blank"
+            android:textColor="#FFFFFF"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    </WebView>
+        <WebView
+            android:id="@+id/videoDisplay"
+            android:layout_width="match_parent"
+            android:layout_height="264dp"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/dateDisplay"
+            app:layout_constraintVertical_bias="0.06">
 
-    <ImageView
-        android:id="@+id/imageDisplay"
-        android:layout_width="383dp"
-        android:layout_height="264dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginEnd="24dp"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/dateDisplay"
-        app:layout_constraintVertical_bias="0.06"
-        tools:src="@tools:sample/backgrounds/scenic" />
+        </WebView>
 
-    <TextView
-        android:id="@+id/description"
-        android:layout_width="333dp"
-        android:layout_height="214dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginEnd="24dp"
-        android:scrollbars="vertical"
-        android:textColor="#FFFFFF"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.491"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageDisplay"
-        app:layout_constraintVertical_bias="0.511" />
+        <ImageView
+            android:id="@+id/imageDisplay"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:scaleType="fitCenter"
+            android:visibility="invisible"
+            android:minHeight="400dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/dateDisplay"
+            app:layout_constraintVertical_bias="0.06"
+            tools:src="@tools:sample/backgrounds/scenic" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/Imagedescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:scrollbars="vertical"
+            android:textColor="#FFFFFF"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.491"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageDisplay"
+            app:layout_constraintVertical_bias="0.511" />
+
+        <TextView
+            android:id="@+id/Videodescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:scrollbars="vertical"
+            android:textColor="#FFFFFF"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.491"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/videoDisplay"
+            app:layout_constraintVertical_bias="0.511" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
