@@ -4,12 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#202325">
+    android:background="@color/black">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="fill_parent"
         android:layout_height="match_parent"
-        android:background="#212325"
+        android:background="@color/black"
         android:fillViewport="false"
         android:orientation="vertical"
         android:padding="10dp">
@@ -19,7 +19,8 @@
             android:layout_width="63dp"
             android:layout_height="39dp"
             android:layout_marginTop="5dp"
-            android:layout_marginEnd="24dp"
+            android:layout_marginEnd="16dp"
+            android:backgroundTint="@color/black"
             android:text="@string/next"
             app:icon="@android:drawable/ic_media_next"
             app:layout_constraintEnd_toEndOf="parent"
@@ -28,10 +29,12 @@
 
         <Button
             android:id="@+id/previousImageButton"
+            style="@style/Widget.MaterialComponents.Button"
             android:layout_width="63dp"
             android:layout_height="39dp"
-            android:layout_marginStart="24dp"
+            android:layout_marginStart="16dp"
             android:layout_marginTop="5dp"
+            android:backgroundTint="@color/black"
             android:text="@string/previousButtonText"
             app:icon="@android:drawable/ic_media_previous"
             app:layout_constraintStart_toStartOf="parent"
@@ -42,9 +45,9 @@
             android:id="@+id/dateDisplay"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="17dp"
-            android:text="@string/blank"
+            android:layout_marginTop="10dp"
             android:textColor="#FFFFFF"
+            app:layout_constraintBottom_toBottomOf="@+id/nextImageButton"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
@@ -68,9 +71,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:adjustViewBounds="true"
+            android:minHeight="400dp"
             android:scaleType="fitCenter"
             android:visibility="invisible"
-            android:minHeight="400dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

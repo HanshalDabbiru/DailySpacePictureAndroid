@@ -80,15 +80,19 @@ public class SecondFragment extends Fragment {
                 String mediaType = reader.getString("media_type");
                 String url1 = reader.getString("url");
                 if(mediaType.equals("image"))
-                { //https://www.youtube.com/watch?v=rWAp-RHUAIc&feature=emb_imp_woyt
+                {
                     Picasso.get().load(url1).into(image);
                     image.setVisibility(View.VISIBLE);
                     TextView description = view.findViewById(R.id.Imagedescription);
                     description.setMovementMethod(ScrollingMovementMethod.getInstance());
-                    description.setText(reader.getString("explanation"));
+                    if(reader.has("copyright"))
+                        description.setText(reader.getString("explanation") + " " + "\u00A9" + reader.getString("copyright"));
+                    else
+                        description.setText(reader.getString("explanation"));
                 }
                 if(mediaType.equals("video"))
                 {
+                    //web.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
                     web.getSettings().setJavaScriptEnabled(true);
                     web.getSettings().setPluginState(WebSettings.PluginState.ON);
                     if(!url1.contains("https:"))
@@ -102,7 +106,10 @@ public class SecondFragment extends Fragment {
                     description.setMovementMethod(ScrollingMovementMethod.getInstance());
                     TextView description2 = view.findViewById(R.id.Videodescription);
                     description2.setVisibility(View.VISIBLE);
-                    description2.setText(reader.getString("explanation"));
+                    if(reader.has("copyright"))
+                        description2.setText(reader.getString("explanation") + " " + "\u00A9" + reader.getString("copyright"));
+                    else
+                        description2.setText(reader.getString("explanation"));
                 }
                 dateDisplay.setText(m + "/" + d + "/" + y);
                 Calendar calendar = Calendar.getInstance();
@@ -159,7 +166,7 @@ public class SecondFragment extends Fragment {
         c.set(Calendar.MONTH, month - 1);
         c.set(Calendar.YEAR, year);
         c.add(Calendar.DAY_OF_MONTH, 1);
-
+        //web.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
         String[] arr = new String[3];
         arr[0] = String.valueOf(c.get(Calendar.YEAR));
         arr[1] = String.valueOf(c.get(Calendar.MONTH) + 1);
@@ -201,7 +208,10 @@ public class SecondFragment extends Fragment {
                     image.setVisibility(View.VISIBLE);
                     web.loadUrl(" ");
 //                    Picasso.get().load(url1).into(image);
-                    description.setText(reader.getString("explanation"));
+                    if(reader.has("copyright"))
+                        description.setText(reader.getString("explanation") + " " + "\u00A9" + reader.getString("copyright"));
+                    else
+                        description.setText(reader.getString("explanation"));
                     description2.setVisibility(View.INVISIBLE);
 //                    description.setVisibility(View.VISIBLE);
 
@@ -222,17 +232,24 @@ public class SecondFragment extends Fragment {
                 }
                 if(mediaType.equals("video"))
                 {
+                    //web.onResume();
                     image.setVisibility(View.GONE);
-                    web.setVisibility(View.VISIBLE);
                     web.getSettings().setJavaScriptEnabled(true);
                     web.getSettings().setPluginState(WebSettings.PluginState.ON);
+                    //web.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
                     if(!url1.contains("https:"))
                     {
                         url1 = "https:" + url1;
                     }
+                    WebSettings settings = web.getSettings();
+                    settings.setDomStorageEnabled(true);
                     web.loadUrl(url1);
                     web.setWebChromeClient(new WebChromeClient());
-                    description2.setText(reader.getString("explanation"));
+                    web.setVisibility(View.VISIBLE);
+                    if(reader.has("copyright"))
+                        description2.setText(reader.getString("explanation") + " " + "\u00A9" + reader.getString("copyright"));
+                    else
+                        description2.setText(reader.getString("explanation"));
                     description.setVisibility(View.INVISIBLE);
                     description2.setVisibility(View.VISIBLE);
 
@@ -264,13 +281,13 @@ public class SecondFragment extends Fragment {
 
     public String[] previousImage(View view, ImageView image, WebView web, TextView dateDisplay, int year, int month, int day)
     {
-
+        //web.onPause();
         Calendar c = Calendar.getInstance();
         c.set(Calendar.DAY_OF_MONTH, day);
         c.set(Calendar.MONTH, month - 1);
         c.set(Calendar.YEAR, year);
         c.add(Calendar.DAY_OF_MONTH, -1);
-
+        //web.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
         String[] arr = new String[3];
         arr[0] = String.valueOf(c.get(Calendar.YEAR));
         arr[1] = String.valueOf(c.get(Calendar.MONTH) + 1);
@@ -309,9 +326,13 @@ public class SecondFragment extends Fragment {
                 {
                     web.setVisibility(View.GONE);
                     image.setVisibility(View.VISIBLE);
+                    web.loadUrl(" ");
                     description.setVisibility(View.INVISIBLE);
                     //Picasso.get().load(url1).into(image);
-                    description.setText(reader.getString("explanation"));
+                    if(reader.has("copyright"))
+                        description.setText(reader.getString("explanation") + " " + "\u00A9" + reader.getString("copyright"));
+                    else
+                        description.setText(reader.getString("explanation"));
                     //description.setVisibility(View.VISIBLE);
                     description2.setVisibility(View.INVISIBLE);
                     Picasso.get().load(url1)
@@ -329,16 +350,20 @@ public class SecondFragment extends Fragment {
                 if(mediaType.equals("video"))
                 {
                     image.setVisibility(View.GONE);
-                    web.setVisibility(View.VISIBLE);
                     web.getSettings().setJavaScriptEnabled(true);
                     web.getSettings().setPluginState(WebSettings.PluginState.ON);
+                    //web.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
                     if(!url1.contains("https:"))
                     {
                         url1 = "https:" + url1;
                     }
                     web.loadUrl(url1);
                     web.setWebChromeClient(new WebChromeClient());
-                    description2.setText(reader.getString("explanation"));
+                    web.setVisibility(View.VISIBLE);
+                    if(reader.has("copyright"))
+                        description2.setText(reader.getString("explanation") + " " + "\u00A9" + reader.getString("copyright"));
+                    else
+                        description2.setText(reader.getString("explanation"));
                     description2.setVisibility(View.VISIBLE);
                     description.setVisibility(View.INVISIBLE);
                 }
